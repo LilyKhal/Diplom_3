@@ -13,7 +13,7 @@ public class LoginPage {
 
 
 
-    WebElement findElement(By locator) {
+      WebElement findElement(By locator) {
         return driver.findElement(locator);
     }
     public LoginPage(WebDriver driver) {

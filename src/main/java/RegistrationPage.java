@@ -8,9 +8,10 @@ public class RegistrationPage {
 
     private final By nameField = By.cssSelector("#root > div > main > div > form > fieldset:nth-child(1) > div > div > input");
     private final By emailField = By.cssSelector("#root > div > main > div > form > fieldset:nth-child(2) > div > div > input");
-    private final By passwordField = By.cssSelector("#root > div > main > div > form > fieldset:nth-child(3) > div > div > div");
+    private final By passwordField = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[3]/div/div/input");
     private final By registrationButton = By. cssSelector("#root > div > main > div > form > button");
     private final By loginButton = By.xpath("//*[@id=\"root\"]/div/main/div/div/p/a");
+    private final By incorrectPasswordNotification = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[3]/div/p");
 
 
 
@@ -38,5 +39,8 @@ public class RegistrationPage {
     }
     public void clickLoginButton() {
         findElement(loginButton).click();
+    }
+    public boolean incorrectPasswordNotificationIsDisplayed(){
+        return findElement(incorrectPasswordNotification).isDisplayed();
     }
 }

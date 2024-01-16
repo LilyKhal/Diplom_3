@@ -25,7 +25,7 @@ public class MainPage {
 
 
 
-    private WebElement findElement(By locator) {
+     WebElement findElement(By locator) {
         return driver.findElement(locator);
     }
 
