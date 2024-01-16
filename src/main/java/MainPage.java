@@ -2,13 +2,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainPage {
     private final WebDriver driver;
     public static final String MAIN_URL = "https://stellarburgers.nomoreparties.site/";
     private final By burgerIngredientsBlock = By.className("BurgerIngredients_ingredients__1N8v2");
-    private final By personalCabinetButton = By.className("AppHeader_header__link__3D_hX");
-    private final By loginToAccountButton = By.className("button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg");
+    private final By personalCabinetButton = By.xpath("//*[@id=\"root\"]/div/header/nav/a");
+    private final By loginToAccountButton = By.xpath("//*[@id=\"root\"]/div/main/section[2]/div/button");
 
     private final By bunsTab = By.xpath(".//span[text()='Булки']");
     private final By saucesTab = By.xpath(".//span[text()='Соусы']");
@@ -31,6 +35,7 @@ public class MainPage {
     public void open() {
         driver.get(MAIN_URL);
     }
+
     public void clickPersonalCabinetButton() {
         findElement(personalCabinetButton).click();
     }
@@ -46,16 +51,14 @@ public class MainPage {
     public void clickFillingsTab() {
         findElement(fillingsTab).click();
     }
-    public void scrollToBunsSection(){
-        WebElement element = findElement(bunsSection);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
+
+    public void waitForLoadFillingsSection() throws InterruptedException {
+        Thread.sleep(1000);
     }
-//    public void scrollToSaucesSection(){
-//        WebElement element = findElement(saucesSection);
-//        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-//    }
-//    public void scrollToFillingsSection(){
-//        WebElement element = findElement(fillingsSection);
-//        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-//    }
+    public void waitForLoadSaucesSection() throws InterruptedException {
+        Thread.sleep(1000);
+    }
+    public void waitForLoadBunsSection() throws InterruptedException {
+        Thread.sleep(1000);
+    }
 }

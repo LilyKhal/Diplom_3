@@ -3,7 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage {
-    public static  final String LOGIN_URL = "https://stellarburgers.nomoreparties.site/login";
+    public static final String LOGIN_URL = "https://stellarburgers.nomoreparties.site/login";
     private final WebDriver driver;
     private final By emailField2 = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[1]/div/div/input");
     private final By passwordField2 = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[2]/div/div/input");
