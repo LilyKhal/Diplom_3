@@ -9,10 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.Utils;
-
+import pageObjectModel.LoginPage;
+import pageObjectModel.MainPage;
+import pageObjectModel.RegistrationPage;
 import java.util.concurrent.TimeUnit;
-
 import static org.junit.Assert.*;
 import static utils.Utils.randomString;
 
@@ -26,7 +26,7 @@ public class RegistrationPageTest {
     }
 
     @Test
-    public void ShortPasswordTest(){
+    public void shortPasswordTest(){
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.open();
         registrationPage.setNameField("Genry");
@@ -36,7 +36,7 @@ public class RegistrationPageTest {
         assertTrue(registrationPage.incorrectPasswordNotificationIsDisplayed());
     }
     @Test
-    public void RegistrationTest() {
+    public void registrationTest() {
         RegistrationPage registrationPage= new RegistrationPage(driver);
         registrationPage.open();
 
@@ -49,7 +49,6 @@ public class RegistrationPageTest {
         registrationPage.clickRegistrationButton();
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
-        assertEquals(driver.getCurrentUrl(), LoginPage.LOGIN_URL);
 
         UserClient userClient = new UserClient();
         Response response = userClient.login(new UserCred(email, password));
@@ -60,11 +59,12 @@ public class RegistrationPageTest {
         userClient.delete(accessToken);
     }
     @Test
-    public void LoginButtonOnRegistrationPage(){
+    public void loginButtonOnRegistrationPageTest(){
         RegistrationPage registrationPage= new RegistrationPage(driver);
         registrationPage.open();
         registrationPage.clickLoginButton();
-        assertEquals(driver.getCurrentUrl(), LoginPage.LOGIN_URL);
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
 
     }
     @After

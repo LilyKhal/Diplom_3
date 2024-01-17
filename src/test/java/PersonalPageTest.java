@@ -11,15 +11,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjectModel.LoginPage;
 import pageObjectModel.MainPage;
+import pageObjectModel.PersonalPage;
 import utils.Utils;
 import java.util.concurrent.TimeUnit;
 import static utils.Utils.randomString;
 
-public class LoginPageTest {
+public class PersonalPageTest {
     private WebDriver driver;
-     private User user;
-     private UserClient userClient;
-     private String token;
+    MainPage mainPage;
+    private User user;
+    private UserClient userClient;
+    private String token;
     @Before
     public void setUp(){
         RestAssured.baseURI = MainPage.MAIN_URL;
@@ -29,11 +31,8 @@ public class LoginPageTest {
         token = createResponse.path("accessToken");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-    }
 
-    @Test
-    public void loginPageTest() {
-        MainPage mainPage = new MainPage(driver);
+        mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
         loginPage.setEmailField(user.getEmail());
@@ -42,6 +41,37 @@ public class LoginPageTest {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.urlToBe(MainPage.MAIN_URL));
     }
+    @Test
+    public void openPersonalPageTest() {
+        mainPage.clickPersonalCabinetButton();
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.urlToBe(PersonalPage.PERSONAL_URL));
+    }
+
+    @Test
+    public void constructorButtonOnPersonalPageTest(){
+        PersonalPage personalPage= new PersonalPage(driver);
+        mainPage.clickPersonalCabinetButton();
+        personalPage.clickConstructorButton();
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.urlToBe(MainPage.MAIN_URL));    }
+    @Test
+    public void bannerButtonOnPersonalPageTest(){
+        PersonalPage personalPage= new PersonalPage(driver);
+        mainPage.clickPersonalCabinetButton();
+        personalPage.clickBannerButton();
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.urlToBe(MainPage.MAIN_URL));
+    }
+    @Test
+    public void logoutButtonOnPersonalPageTest(){
+        PersonalPage personalPage= new PersonalPage(driver);
+        mainPage.clickPersonalCabinetButton();
+        personalPage.clickLogoutButton();
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
+    }
+
     @After
     public void tearDown(){
         driver.quit();

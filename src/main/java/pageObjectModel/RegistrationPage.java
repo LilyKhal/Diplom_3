@@ -1,3 +1,5 @@
+package pageObjectModel;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,12 +8,15 @@ public class RegistrationPage {
      WebDriver driver;
     public static final String REGISTRATION_URL = "https://stellarburgers.nomoreparties.site/register";
 
-    private final By nameField = By.cssSelector("#root > div > main > div > form > fieldset:nth-child(1) > div > div > input");
-    private final By emailField = By.cssSelector("#root > div > main > div > form > fieldset:nth-child(2) > div > div > input");
-    private final By passwordField = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[3]/div/div/input");
-    private final By registrationButton = By. cssSelector("#root > div > main > div > form > button");
-    private final By loginButton = By.xpath("//*[@id=\"root\"]/div/main/div/div/p/a");
-    private final By incorrectPasswordNotification = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[3]/div/p");
+    private final By nameField = By.cssSelector("fieldset.Auth_fieldset__1QzWN:nth-child(1) > div:nth-child(1) > div:nth-child(1) > input:nth-child(2)");
+
+    private final By emailField = By.cssSelector("fieldset.Auth_fieldset__1QzWN:nth-child(2) > div:nth-child(1) > div:nth-child(1) > input:nth-child(2)");
+    private final By passwordField = By.cssSelector(".input_type_password > input:nth-child(2)");
+
+    private final By registrationButton = By. cssSelector(".button_button__33qZ0");
+
+    private final By loginButton = By.cssSelector(".Auth_link__1fOlj");
+    private final By incorrectPasswordNotification = By.cssSelector(".input__error");
 
 
 

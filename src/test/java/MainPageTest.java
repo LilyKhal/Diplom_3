@@ -3,12 +3,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjectModel.LoginPage;
+import pageObjectModel.MainPage;
 
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 public class MainPageTest {
     private WebDriver driver;
 
@@ -35,15 +35,16 @@ public class MainPageTest {
         MainPage mainPage = new MainPage(driver);
         mainPage.open();
         mainPage.clickLoginToAccountButton();
-        assertEquals(driver.getCurrentUrl(), LoginPage.LOGIN_URL);
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
     @Test
-    public void loginThroughPersonalCabinetButton(){
+    public void loginThroughPersonalCabinetButtonTest(){
         MainPage mainPage = new MainPage(driver);
         mainPage.open();
         mainPage.clickPersonalCabinetButton();
-        assertEquals(driver.getCurrentUrl(), LoginPage.LOGIN_URL);
-    }
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));    }
 
     @After
     public void tearDown(){
