@@ -8,7 +8,6 @@ public class PersonalPage {
     WebDriver driver;
     public static final String PERSONAL_URL = "https://stellarburgers.nomoreparties.site/account/profile";
     private final By constructorButton = By.cssSelector(".AppHeader_header__list__3oKJj > li:nth-child(1) > a:nth-child(1)");
-
     private final By logoutButton = By.cssSelector(".Account_button__14Yp3");
     private final By bannerButton = By.cssSelector(".AppHeader_header__logo__2D0X2");
 
@@ -31,6 +30,5 @@ public class PersonalPage {
     public void clickBannerButton(){
         findElement(bannerButton).click();
     }
-
 
 }

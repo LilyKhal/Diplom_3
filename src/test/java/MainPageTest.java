@@ -18,7 +18,7 @@ public class MainPageTest {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
     @Test
-    public void throughTheSectionsTest() throws InterruptedException {
+    public void throughTheSectionsTest() {
         MainPage mainPage = new MainPage(driver);
         mainPage.open();
 

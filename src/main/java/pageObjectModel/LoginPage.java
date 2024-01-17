@@ -12,9 +12,7 @@ public class LoginPage {
     private final By passwordField = By.cssSelector(".input_type_password > input:nth-child(2)");
     private final By loginButton = By.xpath("//button[text()='Войти']");
 
-
-
-      WebElement findElement(By locator) {
+    WebElement findElement(By locator) {
         return driver.findElement(locator);
     }
     public LoginPage(WebDriver driver) {
@@ -33,6 +31,4 @@ public class LoginPage {
     public void clickLoginButton() {
         findElement(loginButton).click();
     }
-
-
 }
