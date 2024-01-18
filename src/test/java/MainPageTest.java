@@ -18,14 +18,26 @@ public class MainPageTest {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
     @Test
-    public void throughTheSectionsTest() {
+    public void throughTheFillingsSectionTest() {
         MainPage mainPage = new MainPage(driver);
         mainPage.open();
-
         mainPage.clickFillingsTab();
         mainPage.waitForLoadFillingsSection();
+    }
+    @Test
+    public void throughTheSaucesSectionTest() {
+        MainPage mainPage = new MainPage(driver);
+        mainPage.open();
         mainPage.clickSaucesTab();
         mainPage.waitForLoadSaucesSection();
+    }
+    @Test
+    public void throughTheBunsSectionTest() {
+        MainPage mainPage = new MainPage(driver);
+        mainPage.open();
+        // на старте страницы секция Buns не кликабельна, поэтому необходимо сначала перейти на другую секцию
+        mainPage.clickFillingsTab();
+        mainPage.waitForLoadFillingsSection();
         mainPage.clickBunsTab();
         mainPage.waitForLoadBunsSection();
     }
